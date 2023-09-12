@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+</head>
+<body>
+
+<h1> Posts: </h1>
+<th:block block th:each="Posts : ${posts}" >
+
+    <p th:text="${post.postContent}"> </p>
+
+    <form action="/" method="post">
+        <fieldset>
+
+            <legend>Add new Post</legend>
+            <label for="postContent">User Name</label>
+            <input type="text" name="postContent" id="postContent" >
+
+
+            <input type="submit" value="Add">
+
+        </fieldset>
+</th:block>
+
+
+</form>
+</body>
+</html>
