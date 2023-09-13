@@ -7,24 +7,38 @@
 <body>
 
 <h1> Posts: </h1>
-<th:block block th:each="Posts : ${posts}" >
-
-    <p th:text="${post.postContent}"> </p>
-
-    <form action="/" method="post">
-        <fieldset>
-
-            <legend>Add new Post</legend>
-            <label for="postContent">User Name</label>
-            <input type="text" name="postContent" id="postContent" >
 
 
-            <input type="submit" value="Add">
+<form action="/posts" method="post">
+    <h1>Add new post</h1>
+    <fieldset>
+        <label for="postContent">New Post</label>
+        <input type="text" name="postContent" id="postContent" >
 
-        </fieldset>
-</th:block>
+        <input type="submit" value=" Add ">
 
-
+    </fieldset>
 </form>
+
+
+<!--<th:block block th:each="Posts : ${posts}" >-->
+
+<!--    <p th:text="${post.postContent}"> </p>-->
+
+<!--    <form action="/" method="post">-->
+<!--        <fieldset>-->
+
+<!--            <legend>Add new Post</legend>-->
+<!--            <label for="postContent">User Name</label>-->
+<!--            <input type="text" name="postContent" id="postContent" >-->
+
+
+<!--            <input type="submit" value="Add">-->
+
+<!--        </fieldset>-->
+<!--</th:block>-->
+
+
+<!--</form>-->
 </body>
 </html>

@@ -3,7 +3,8 @@ package com.Ltuc.BcryptProj.controllers;
 import com.Ltuc.BcryptProj.exceptions.PostsNotFound;
 import com.Ltuc.BcryptProj.models.NewUser;
 import com.Ltuc.BcryptProj.models.Posts;
-import com.Ltuc.BcryptProj.repositries.NewUserReopsitry;
+
+import com.Ltuc.BcryptProj.repositries.NewUserRepositry;
 import com.Ltuc.BcryptProj.repositries.PostsRepositry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,17 +19,22 @@ public class PostsController {
     PostsRepositry postsRepositry;
 
     @Autowired
-    NewUserReopsitry newUserReopsitry;
-    @GetMapping("/")
+    NewUserRepositry newUserRepository;
+    @GetMapping("/posts")
      public String postsPage() {
          return "posts.html";
      }
 
-     @PostMapping("/")
-     public RedirectView newPost(String textContent , Long userId){
-         NewUser user = newUserReopsitry.findById(userId);
-//                 .orElseThrow(() -> new PostsNotFound("Could not find posts "));;
-         Posts post = new Posts(textContent,user);
-        return new RedirectView("/");
-     }
+
+     @PostMapping("/posts")
+  public RedirectView newPost(String postContent, Long userId){
+
+        NewUser newUser =  newUserRepository.findById(userId)
+                .orElseThrow(() -> new PostsNotFound("user not registered"));
+
+        Posts post=new Posts(postContent,newUser);
+        postsRepositry.save(post);
+        return new RedirectView("/posts");
+
+  }
 }
