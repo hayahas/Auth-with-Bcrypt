@@ -1,7 +1,8 @@
 package com.Ltuc.BcryptProj.controllers;
 
 import com.Ltuc.BcryptProj.models.NewUser;
-import com.Ltuc.BcryptProj.repositries.NewUserReopsitry;
+
+import com.Ltuc.BcryptProj.repositries.NewUserRepositry;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,31 +10,37 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class NewUserController {
     @Autowired
-    NewUserReopsitry newUserReopsitry;
+    NewUserRepositry newUserRepository;
 
     @PostMapping("/signup")
-    public RedirectView signUpPage(String username,String hashedPassword){
+    public RedirectView signUpPage(String userName,String hashedPassword){
 
-        NewUser newUser = new NewUser(username,BCrypt.hashpw(hashedPassword, BCrypt.gensalt(12)));
-        newUserReopsitry.save(newUser);
+        NewUser newUser = new NewUser(userName,BCrypt.hashpw(hashedPassword, BCrypt.gensalt(12)));
+        newUserRepository.save(newUser);
 
         return new RedirectView("/login");
     }
 
 
     @PostMapping("/login")
-    public RedirectView loginPage(String username,String hashedPassword){
+    public RedirectView loginPage(HttpServletRequest request, String userName, String hashedPassword){
 
-        NewUser userFromDb = newUserReopsitry.findByUserName(username);
+        NewUser userFromDb = newUserRepository.findByUserName(userName);
 
         if((userFromDb == null)
                 || (!BCrypt.checkpw(hashedPassword, userFromDb.getHashedPassword()))){
+            HttpSession session =request.getSession();
+            session.setAttribute("userName",userName);
             return new RedirectView("/login");
         }
-        return new RedirectView("/");
+        return new RedirectView("/posts");
+
 
     }
 

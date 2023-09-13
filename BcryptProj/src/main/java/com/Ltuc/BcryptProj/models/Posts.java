@@ -14,23 +14,28 @@ public class Posts {
     @ManyToOne
     private NewUser newUser;
 
-    private Long userId;
+//    private Long userId;
 
     private String postContent;
 
     public Posts() {
     }
 
-    public Posts( String postContent, Long userId) {
-        this.userId = userId;
-        this.postContent = postContent;
-    }
+//    public Posts( String postContent, Long userId) {
+//        this.userId = userId;
+//        this.postContent = postContent;
+//    }
 
     public Posts(String postContent,NewUser newUser) {
         this.postContent=postContent;
         this.newUser=newUser;
 
     }
+
+//    public Posts(String postContent, Long userId) {
+//        this.userId = userId;
+//        this.postContent = postContent;
+//    }
 
     public Long getId() {
         return id;
@@ -40,13 +45,13 @@ public class Posts {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+//    public Long getUserId() {
+//        return userId;
+//    }
+//
+//    public void setUserId(Long userId) {
+//        this.userId = userId;
+//    }
 
     public String getPostContent() {
         return postContent;
