@@ -1,44 +1,67 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Posts</title>
-</head>
-<body>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Posts</title>-->
+<!--    <link rel="stylesheet" type="text/css" href="style.css">-->
+<!--</head>-->
+<!--<body>-->
 
-<h1> Posts: </h1>
-
-
-<form action="/posts" method="post">
-    <h1>Add new post</h1>
-    <fieldset>
-        <label for="postContent">New Post</label>
-        <input type="text" name="postContent" id="postContent" >
-
-        <input type="submit" value=" Add ">
-
-    </fieldset>
-</form>
+<!--<h1> Posts: </h1>-->
 
 
-<!--<th:block block th:each="Posts : ${posts}" >-->
+<!--<form action="/post" method="post">-->
+<!--    <h1>Add new post</h1>-->
+<!--    <fieldset>-->
+<!--        <label for="postContent">New Post</label>-->
+<!--        <input type="text" name="postContent" id="postContent" >-->
+
+<!--        <input type="submit" value=" Add ">-->
+
+<!--    </fieldset>-->
+<!--</form>-->
+
+<!--<th:block block th:each="Posts : ${post}" >-->
 
 <!--    <p th:text="${post.postContent}"> </p>-->
 
-<!--    <form action="/" method="post">-->
-<!--        <fieldset>-->
-
-<!--            <legend>Add new Post</legend>-->
-<!--            <label for="postContent">User Name</label>-->
-<!--            <input type="text" name="postContent" id="postContent" >-->
-
-
-<!--            <input type="submit" value="Add">-->
-
-<!--        </fieldset>-->
 <!--</th:block>-->
 
+<!--<form action="/logout" method="post">-->
 
+<!--    <input type="submit" value=" Log out ">-->
 <!--</form>-->
+
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<h1>Posts:</h1>
+
+<form action="/posts" method="post">
+    <h2>Add new post</h2>
+
+    <textarea id="postContent" name="postContent" rows="4" cols="50"></textarea>
+    <br><br>
+        <input type="submit" value="Add">
+</form>
+
+
+<div th:each="post : ${posts}">
+    <p th:text="${post.postContent}"></p>
+</div>
+
+<form action="/logout" method="post">
+    <input type="submit" value="Log out">
+</form>
+
 </body>
 </html>

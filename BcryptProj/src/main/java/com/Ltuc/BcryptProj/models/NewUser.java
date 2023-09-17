@@ -9,13 +9,25 @@ public class NewUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
+
+    @Column(nullable = false)
     private String userName;
+
+    @Column(nullable = false)
     private String hashedPassword;
 
 
     @OneToMany(mappedBy = "newUser", cascade =  CascadeType.ALL)
     List<Posts> posts;
     public NewUser() {
+    }
+
+    public List<Posts> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Posts> posts) {
+        this.posts = posts;
     }
 
     public NewUser(String userName , String hashedPassword){

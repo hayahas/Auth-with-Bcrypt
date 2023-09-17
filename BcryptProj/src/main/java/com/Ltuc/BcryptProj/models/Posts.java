@@ -21,10 +21,7 @@ public class Posts {
     public Posts() {
     }
 
-//    public Posts( String postContent, Long userId) {
-//        this.userId = userId;
-//        this.postContent = postContent;
-//    }
+
 
     public Posts(String postContent,NewUser newUser) {
         this.postContent=postContent;

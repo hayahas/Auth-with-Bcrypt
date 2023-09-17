@@ -41,7 +41,19 @@ public class NewUserController {
         }
         return new RedirectView("/posts");
 
+    }
 
+    @PostMapping("/logout")
+    public RedirectView logoutButton(HttpServletRequest request){
+        HttpSession session =request.getSession();
+        session.invalidate();
+
+        return new RedirectView("/login");
+    }
+
+    @GetMapping("/logout")
+    public String logoutFromAccount(){
+         return "LoginPage.html";
     }
 
     @GetMapping("/signup")
