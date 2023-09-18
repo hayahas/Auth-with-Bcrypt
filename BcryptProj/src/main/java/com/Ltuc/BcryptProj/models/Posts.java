@@ -16,7 +16,7 @@ public class Posts {
 
 //    private Long userId;
 
-    private String postContent;
+    public String postContent;
 
     public Posts() {
     }

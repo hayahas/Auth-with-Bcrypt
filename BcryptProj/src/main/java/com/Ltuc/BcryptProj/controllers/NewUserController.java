@@ -35,10 +35,11 @@ public class NewUserController {
 
         if((userFromDb == null)
                 || (!BCrypt.checkpw(hashedPassword, userFromDb.getHashedPassword()))){
-            HttpSession session =request.getSession();
-            session.setAttribute("userName",userName);
+
             return new RedirectView("/login");
         }
+        HttpSession session =request.getSession();
+        session.setAttribute("userName",userName);
         return new RedirectView("/posts");
 
     }
