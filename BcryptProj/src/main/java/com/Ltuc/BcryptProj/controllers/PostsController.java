@@ -36,21 +36,19 @@ public class PostsController {
        String userName= session.getAttribute("userName").toString();
 
 //        m.addAttribute("userName", userName);
-        NewUser newUser = newUserRepository.findByUserName("userName");
+        NewUser newUser = newUserRepository.findByUserName(userName);
 
         if(newUser != null){
             List<Posts> posts = newUser.getPosts();
-            m.addAttribute("posts",posts);
+            m.addAttribute("p",posts);
         }
-
-
 
         return "posts.html";
      }
 
 
 
-    @PostMapping("/addPost")
+    @PostMapping("/addpost")
      public RedirectView newPost(String postContent, HttpServletRequest request, Long userId){
 
         HttpSession session = request.getSession();

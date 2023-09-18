@@ -46,7 +46,7 @@
 
 <h1>Posts:</h1>
 
-<form action="/posts" method="post">
+<form action="/addpost" method="post">
     <h2>Add new post</h2>
 
     <textarea id="postContent" name="postContent" rows="4" cols="50"></textarea>
@@ -54,10 +54,13 @@
         <input type="submit" value="Add">
 </form>
 
+<ul>
+<th:block th:each="post : ${p}">
+    <li th:text="${post.postContent}"></li>
+</th:block>
+</ul>
 
-<div th:each="post : ${posts}">
-    <p th:text="${post.postContent}"></p>
-</div>
+<!--<p th:text = " ${userName}"></p>-->
 
 <form action="/logout" method="post">
     <input type="submit" value="Log out">
